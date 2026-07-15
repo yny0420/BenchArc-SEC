@@ -178,7 +178,7 @@ def _double_spin(minimum: float = -1_000_000, maximum: float = 1_000_000) -> QDo
 class BenchArcSECWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle("BenchArc SEC 0.2.2")
+        self.setWindowTitle("BenchArc SEC 0.2.3")
         self.resize(1320, 820)
         self.setAcceptDrops(True)
 
@@ -201,6 +201,7 @@ class BenchArcSECWindow(QMainWindow):
         self.render_timer.timeout.connect(self.update_preview)
 
         self._build_toolbar()
+        self._build_help_menu()
         self._build_main_ui()
         self.statusBar().showMessage("Open a UNICORN TXT/CSV/TSV file or a chromatogram image.")
 
@@ -234,6 +235,42 @@ class BenchArcSECWindow(QMainWindow):
         export_png = QAction("Export 600 dpi PNG", self)
         export_png.triggered.connect(self.export_png)
         toolbar.addAction(export_png)
+
+    def _build_help_menu(self) -> None:
+        help_menu = self.menuBar().addMenu("Help")
+
+        guide_action = QAction("User Guide", self)
+        guide_action.triggered.connect(self.show_user_guide)
+        help_menu.addAction(guide_action)
+
+        about_action = QAction("About BenchArc SEC", self)
+        about_action.setMenuRole(QAction.MenuRole.AboutRole)
+        about_action.triggered.connect(self.show_about)
+        help_menu.addAction(about_action)
+
+    def show_user_guide(self) -> None:
+        QMessageBox.information(
+            self,
+            "BenchArc SEC User Guide",
+            "1. Add one or more UNICORN TXT, CSV, or TSV files.\n"
+            "2. Select a chromatogram in the Source list.\n"
+            "3. Adjust axis limits, tick spacing, labels, and publication style.\n"
+            "4. Optionally normalize the Y axis or subtract the visible baseline.\n"
+            "5. For peak area, enter the start/end volume and enable Calculate and shade.\n"
+            "6. Export the current figure as SVG/600 dpi PNG, or use Batch export.\n\n"
+            "Image-derived curves are approximate; raw instrument data are preferred for quantitative work.\n\n"
+            "Full guide: https://github.com/yny0420/BenchArc-SEC/blob/main/USER_GUIDE.md",
+        )
+
+    def show_about(self) -> None:
+        QMessageBox.about(
+            self,
+            "About BenchArc SEC",
+            "BenchArc SEC 0.2.3\n\n"
+            "Publication-ready size-exclusion chromatography figures.\n\n"
+            "Copyright © 2026 Yang Yu. All rights reserved.\n"
+            "https://github.com/yny0420/BenchArc-SEC",
+        )
 
     def _build_main_ui(self) -> None:
         central = QWidget()
