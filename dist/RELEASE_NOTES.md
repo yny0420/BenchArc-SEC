@@ -1,4 +1,13 @@
-# BenchArc SEC 0.2.2
+# BenchArc SEC 0.2.3
+
+## New in 0.2.3
+
+- Added an in-app **Help → User Guide** quick-start guide.
+- Added an **About BenchArc SEC** dialog with copyright information.
+- Added a detailed Chinese user guide covering installation, raw-data import,
+  publication styling, normalization, peak-area analysis, batch processing,
+  export, image-input limitations, and troubleshooting.
+- Added explicit copyright and local-data ownership information.
 
 ## Included
 
@@ -43,7 +52,7 @@
 - Frozen application launched successfully from the mounted DMG.
 - Application bundle passed deep strict code-signature verification.
 - DMG checksum verified by `hdiutil`.
-- SHA-256: `cb329a83e85d23d1f3f79d43bb6eee9a268d3ac95d761fd0030961ba37a2c7a0`
+- SHA-256: `203a45ee1ba58bf817250fb6cb4de857ec483271b660b5c8a0787c59f01369fc`
 
 ## Distribution note
 

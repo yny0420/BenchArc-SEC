@@ -3,6 +3,18 @@
 BenchArc SEC is a local macOS application for turning raw SEC chromatogram
 exports or calibrated chromatogram images into publication-ready figures.
 
+- [中文用户使用指南](USER_GUIDE.md)
+- [Copyright information](COPYRIGHT.md)
+- [Download the latest macOS DMG](https://github.com/yny0420/BenchArc-SEC/releases/latest)
+
+## Installation
+
+Download the latest DMG, open it, and drag **BenchArc SEC** to Applications.
+The application is self-contained; users do not need to install Python or any
+scientific packages. The current build targets Apple Silicon and is not
+notarized. On first launch, macOS may require Control-clicking the application
+and choosing **Open**.
+
 ## Version 0.2 scope
 
 - Use the white BenchArc chromatography-arc icon in Finder, Applications, and
@@ -60,3 +72,7 @@ The build environment is intentionally outside Desktop and Documents because
 macOS protected-folder access can prevent Qt from enumerating development
 plugins there. The installed `.app` is self-contained and does not use this
 temporary environment at runtime.
+
+## Copyright
+
+Copyright © 2026 Yang Yu. All rights reserved. See [COPYRIGHT.md](COPYRIGHT.md).
