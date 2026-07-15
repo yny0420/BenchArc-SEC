@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bencharc-sec"
+version = "0.2.2"
+description = "Local macOS application for publication-ready SEC chromatograms"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=2.0",
+  "Pillow>=11.0",
+  "PySide6-Essentials>=6.10,<6.11",
+]
+
+[project.scripts]
+bencharc-sec = "bencharc_sec.app:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
