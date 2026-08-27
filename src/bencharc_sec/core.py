@@ -427,8 +427,17 @@ def render_svg(trace: TraceData, settings: PlotSettings) -> str:
     plot = (left, top, plot_width, plot_height)
 
     points = _scaled_points(x, y, settings, plot)
-    polyline = " ".join(f"{px:.2f},{py:.2f}" for px, py in points)
     trace_color = html.escape(settings.trace_color)
+    trace_markup: list[str] = []
+    start = 0
+    while start < len(points) - 1:
+        end = min(start + 2_000, len(points))
+        polyline = " ".join(f"{px:.2f},{py:.2f}" for px, py in points[start:end])
+        trace_markup.append(
+            f'<polyline points="{polyline}" fill="none" stroke="{trace_color}" '
+            f'stroke-width="{settings.trace_width}" stroke-linecap="round" stroke-linejoin="round"/>'
+        )
+        start = end - 1
     metadata = (
         f"source={html.escape(trace.source_kind)} "
         f"approximate={str(trace.approximate).lower()} "
@@ -466,7 +475,7 @@ def render_svg(trace: TraceData, settings: PlotSettings) -> str:
         f'<!-- {metadata} -->',
         '<rect width="100%" height="100%" fill="white"/>',
         *area_markup,
-        f'<polyline points="{polyline}" fill="none" stroke="{trace_color}" stroke-width="{settings.trace_width}" stroke-linecap="round" stroke-linejoin="round"/>',
+        *trace_markup,
         f'<line x1="{left:.2f}" y1="{bottom:.2f}" x2="{right:.2f}" y2="{bottom:.2f}" stroke="black" stroke-width="{settings.axis_width}"/>',
         f'<line x1="{left:.2f}" y1="{top:.2f}" x2="{left:.2f}" y2="{bottom:.2f}" stroke="black" stroke-width="{settings.axis_width}"/>',
     ]

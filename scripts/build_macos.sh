@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 APP_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 PROJECT_ROOT="$(cd "$APP_DIR/../.." && pwd)"
-APP_VERSION="0.2.3"
+APP_VERSION="0.2.4"
 DEFAULT_PYTHON="/private/tmp/BenchArc-SEC-venv/bin/python"
 PYTHON="${BENCHARC_PYTHON:-$DEFAULT_PYTHON}"
 

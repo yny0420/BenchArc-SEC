@@ -178,7 +178,7 @@ def _double_spin(minimum: float = -1_000_000, maximum: float = 1_000_000) -> QDo
 class BenchArcSECWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle("BenchArc SEC 0.2.3")
+        self.setWindowTitle("BenchArc SEC 0.2.4")
         self.resize(1320, 820)
         self.setAcceptDrops(True)
 
@@ -266,7 +266,7 @@ class BenchArcSECWindow(QMainWindow):
         QMessageBox.about(
             self,
             "About BenchArc SEC",
-            "BenchArc SEC 0.2.3\n\n"
+            "BenchArc SEC 0.2.4\n\n"
             "Publication-ready size-exclusion chromatography figures.\n\n"
             "Copyright © 2026 Yang Yu. All rights reserved.\n"
             "https://github.com/yny0420/BenchArc-SEC",

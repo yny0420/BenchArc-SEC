@@ -55,6 +55,20 @@ def test_reference_svg_is_valid_and_records_no_transformations() -> None:
     assert "UV 280 (mAU)" in svg
 
 
+def test_large_trace_is_split_into_illustrator_safe_polylines() -> None:
+    x = np.linspace(0, 20, 4_500)
+    trace = TraceData(x, np.sin(x) + 2, "ml", "mAU", "raw-data")
+    settings = PlotSettings(0, 20, 0, 4, 2, 0.5, 1, 0.2)
+
+    root = ET.fromstring(render_svg(trace, settings))
+    polylines = root.findall("{http://www.w3.org/2000/svg}polyline")
+    point_groups = [polyline.attrib["points"].split() for polyline in polylines]
+
+    assert len(polylines) == 3
+    assert max(map(len, point_groups)) <= 2_000
+    assert all(left[-1] == right[0] for left, right in zip(point_groups, point_groups[1:]))
+
+
 def test_detects_axes_and_digitizes_colored_trace(tmp_path: Path) -> None:
     path = tmp_path / "chromatogram.png"
     image = Image.new("RGB", (500, 320), "white")

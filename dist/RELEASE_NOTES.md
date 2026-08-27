@@ -1,4 +1,10 @@
-# BenchArc SEC 0.2.3
+# BenchArc SEC 0.2.4
+
+## Fixed in 0.2.4
+
+- Fixed long SEC traces disappearing when exported SVG files were opened in
+  Adobe Illustrator. Large traces are now written as continuous, overlapping
+  polyline segments while retaining every original data point.
 
 ## New in 0.2.3
 
@@ -52,7 +58,7 @@
 - Frozen application launched successfully from the mounted DMG.
 - Application bundle passed deep strict code-signature verification.
 - DMG checksum verified by `hdiutil`.
-- SHA-256: `203a45ee1ba58bf817250fb6cb4de857ec483271b660b5c8a0787c59f01369fc`
+- SHA-256: `f5eb0ea2eae0db51008a233c3b89510747f37055a0ed006b1d279ca53e4bad61`
 
 ## Distribution note
 
